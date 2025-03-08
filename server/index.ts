@@ -58,12 +58,41 @@ app.use((req, res, next) => {
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  const startServer = async (preferredPort: number, maxRetries = 3) => {
+    for (let port = preferredPort; port < preferredPort + maxRetries; port++) {
+      try {
+        await new Promise((resolve, reject) => {
+          server.listen(port)
+            .once('listening', () => {
+              log(`Server started on port ${port}`);
+              resolve(true);
+            })
+            .once('error', (err: NodeJS.ErrnoException) => {
+              if (err.code === 'EADDRINUSE') {
+                log(`Port ${port} is in use, trying next port...`);
+                server.close();
+              }
+              reject(err);
+            });
+        });
+        return; // Server started successfully
+      } catch (err) {
+        if (port === preferredPort + maxRetries - 1) {
+          throw new Error(`Could not find an available port after ${maxRetries} attempts`);
+        }
+        // Continue to next port
+      }
+    }
+  };
+
+  try {
+    await startServer(3001);
+  } catch (err) {
+    if (err instanceof Error) {
+      console.error('Failed to start server:', err.message);
+    } else {
+      console.error('Failed to start server:', err);
+    }
+    process.exit(1);
+  }
 })();
