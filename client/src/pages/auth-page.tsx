@@ -71,58 +71,64 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Hero section (right on desktop, top on mobile) */}
-      <div className="md:w-1/2 bg-primary-600 text-white p-8 md:p-12 md:order-2 flex flex-col justify-center">
-        <div className="max-w-lg mx-auto">
+      <div className="md:w-1/2 bg-gradient-to-br from-primary-dark via-primary to-primary-light text-white p-8 md:p-12 md:order-2 flex flex-col justify-center relative overflow-hidden">
+        {/* Abstract gradient circles - AI aesthetic */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-white/10 blur-2xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-primary-dark/30 blur-3xl"></div>
+        
+        <div className="max-w-lg mx-auto relative z-10">
           <div className="flex items-center mb-6">
-            <div className="h-10 w-10 rounded-md bg-white text-primary-600 flex items-center justify-center mr-3">
+            <div className="h-12 w-12 rounded-xl glass-card text-primary flex items-center justify-center mr-4 shadow-lg">
               <span className="font-bold text-xl">T</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-heading font-semibold">Trinity Trading</h1>
           </div>
           
-          <h2 className="text-xl md:text-2xl font-heading font-semibold mb-4">
-            Compare Commodities & Shipping Costs in Real-Time
+          <h2 className="text-xl md:text-3xl font-heading font-bold mb-5 text-white/90">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+              Compare Commodities & Shipping in Real-Time
+            </span>
           </h2>
           
-          <p className="mb-6 text-primary-100">
+          <p className="mb-8 text-white/80 text-lg">
             Trinity Trading's platform helps UK businesses find the best prices for commodities and shipping. 
             Save time and money by comparing prices from multiple suppliers in one place.
           </p>
           
-          <div className="space-y-4">
-            <div className="flex items-start">
-              <div className="mt-1 mr-3 text-primary-300">
+          <div className="space-y-5">
+            <div className="flex items-start hover-lift">
+              <div className="mt-1 mr-4 text-white bg-white/20 p-2 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-medium text-white">Real-Time Price Comparisons</h3>
-                <p className="text-sm text-primary-200">Get up-to-date prices from multiple suppliers</p>
+                <h3 className="font-medium text-white text-lg">Real-Time Price Comparisons</h3>
+                <p className="text-white/70">Get up-to-date prices from multiple suppliers</p>
               </div>
             </div>
             
-            <div className="flex items-start">
-              <div className="mt-1 mr-3 text-primary-300">
+            <div className="flex items-start hover-lift">
+              <div className="mt-1 mr-4 text-white bg-white/20 p-2 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-medium text-white">Shipping Cost Calculator</h3>
-                <p className="text-sm text-primary-200">Calculate total costs including delivery to your location</p>
+                <h3 className="font-medium text-white text-lg">Shipping Cost Calculator</h3>
+                <p className="text-white/70">Calculate total costs including delivery to your location</p>
               </div>
             </div>
             
-            <div className="flex items-start">
-              <div className="mt-1 mr-3 text-primary-300">
+            <div className="flex items-start hover-lift">
+              <div className="mt-1 mr-4 text-white bg-white/20 p-2 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-medium text-white">Analytics Dashboard</h3>
-                <p className="text-sm text-primary-200">Track your savings and optimize your procurement</p>
+                <h3 className="font-medium text-white text-lg">Analytics Dashboard</h3>
+                <p className="text-white/70">Track your savings and optimize your procurement</p>
               </div>
             </div>
           </div>
@@ -130,31 +136,31 @@ export default function AuthPage() {
       </div>
       
       {/* Form section (left on desktop, bottom on mobile) */}
-      <div className="md:w-1/2 md:order-1 bg-white flex items-center justify-center p-6">
-        <div className="w-full max-w-md space-y-6">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-heading font-semibold text-gray-900">Welcome Back</h2>
-            <p className="text-gray-600 mt-1">Access your account or create a new one</p>
+      <div className="md:w-1/2 md:order-1 bg-background flex items-center justify-center p-8">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center">
+            <h2 className="gradient-heading text-3xl font-bold">Welcome</h2>
+            <p className="text-muted-foreground mt-2">Access your account or create a new one</p>
           </div>
           
           <Tabs defaultValue="login" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-4">
+            <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="register">Register</TabsTrigger>
             </TabsList>
             
             {/* Login Tab */}
             <TabsContent value="login">
-              <Card>
+              <Card className="glass-card">
                 <CardHeader>
-                  <CardTitle>Account Login</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-xl text-center">Sign In</CardTitle>
+                  <CardDescription className="text-center">
                     Enter your credentials to access your account
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Form {...loginForm}>
-                    <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-4">
+                    <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-5">
                       <FormField
                         control={loginForm.control}
                         name="username"
@@ -162,7 +168,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                              <Input placeholder="Enter your username" {...field} />
+                              <Input className="ai-input" placeholder="Enter your username" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -176,7 +182,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="Enter your password" {...field} />
+                              <Input className="ai-input" type="password" placeholder="Enter your password" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -185,12 +191,12 @@ export default function AuthPage() {
                       
                       <Button 
                         type="submit" 
-                        className="w-full" 
+                        className="w-full gradient-button h-12 mt-2" 
                         disabled={loginMutation.isPending}
                       >
                         {loginMutation.isPending ? (
                           <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                             Logging in...
                           </>
                         ) : (
@@ -205,11 +211,11 @@ export default function AuthPage() {
             
             {/* Register Tab */}
             <TabsContent value="register">
-              <Card>
+              <Card className="glass-card">
                 <CardHeader>
-                  <CardTitle>Create an Account</CardTitle>
-                  <CardDescription>
-                    Register for Trinity Trading platform
+                  <CardTitle className="text-xl text-center">Create Account</CardTitle>
+                  <CardDescription className="text-center">
+                    Join Trinity Trading platform today
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -222,7 +228,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                              <Input placeholder="Choose a username" {...field} />
+                              <Input className="ai-input" placeholder="Choose a username" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -236,7 +242,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              <Input type="email" placeholder="Enter your email" {...field} />
+                              <Input className="ai-input" type="email" placeholder="Enter your email" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -250,7 +256,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Company Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Enter your company name" {...field} />
+                              <Input className="ai-input" placeholder="Enter your company name" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -264,7 +270,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="Create a password" {...field} />
+                              <Input className="ai-input" type="password" placeholder="Create a password" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -278,7 +284,7 @@ export default function AuthPage() {
                           <FormItem>
                             <FormLabel>Confirm Password</FormLabel>
                             <FormControl>
-                              <Input type="password" placeholder="Confirm your password" {...field} />
+                              <Input className="ai-input" type="password" placeholder="Confirm your password" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -287,12 +293,12 @@ export default function AuthPage() {
                       
                       <Button 
                         type="submit" 
-                        className="w-full" 
+                        className="w-full gradient-button h-12 mt-2" 
                         disabled={registerMutation.isPending}
                       >
                         {registerMutation.isPending ? (
                           <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                             Creating account...
                           </>
                         ) : (

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { Search, Clock, Box, MapPin, Calendar, ArrowRight } from "lucide-react";
 
 export default function QuickCompare() {
   const [, setLocation] = useLocation();
@@ -49,18 +50,25 @@ export default function QuickCompare() {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Quick Commodity Comparison</CardTitle>
+    <Card className="glass-card overflow-hidden border-0">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-lg"></div>
+      <CardHeader className="relative border-b border-muted/20">
+        <CardTitle className="flex items-center gap-2 text-xl">
+          <Search className="h-5 w-5 text-primary" />
+          <span className="gradient-heading">Quick Commodity Comparison</span>
+        </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-6 relative">
         {/* Commodity Search Form */}
-        <form className="mb-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <form className="mb-6 space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <Label htmlFor="commodity">Commodity Type</Label>
+              <Label htmlFor="commodity" className="flex items-center gap-1.5 mb-1.5">
+                <Box className="h-4 w-4 text-primary" />
+                Commodity Type
+              </Label>
               <Select value={commodityType} onValueChange={setCommodityType}>
-                <SelectTrigger id="commodity">
+                <SelectTrigger id="commodity" className="ai-input">
                   <SelectValue placeholder="Select a commodity" />
                 </SelectTrigger>
                 <SelectContent>
@@ -74,17 +82,20 @@ export default function QuickCompare() {
             </div>
             
             <div>
-              <Label htmlFor="quantity">Quantity</Label>
+              <Label htmlFor="quantity" className="flex items-center gap-1.5 mb-1.5">
+                <Box className="h-4 w-4 text-primary" />
+                Quantity
+              </Label>
               <div className="flex">
                 <Input 
                   id="quantity" 
                   type="number" 
                   value={quantity} 
                   onChange={(e) => setQuantity(e.target.value)}
-                  className="rounded-r-none"
+                  className="rounded-r-none ai-input"
                 />
                 <Select value={unit} onValueChange={setUnit}>
-                  <SelectTrigger className="w-[80px] rounded-l-none">
+                  <SelectTrigger className="w-[80px] rounded-l-none border-l bg-slate-50">
                     <SelectValue placeholder="Unit" />
                   </SelectTrigger>
                   <SelectContent>
@@ -96,11 +107,14 @@ export default function QuickCompare() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <Label htmlFor="location">Delivery Location</Label>
+              <Label htmlFor="location" className="flex items-center gap-1.5 mb-1.5">
+                <MapPin className="h-4 w-4 text-primary" />
+                Delivery Location
+              </Label>
               <Select value={deliveryLocation} onValueChange={setDeliveryLocation}>
-                <SelectTrigger id="location">
+                <SelectTrigger id="location" className="ai-input">
                   <SelectValue placeholder="Select location" />
                 </SelectTrigger>
                 <SelectContent>
@@ -113,9 +127,12 @@ export default function QuickCompare() {
             </div>
             
             <div>
-              <Label htmlFor="timeframe">Delivery Timeframe</Label>
+              <Label htmlFor="timeframe" className="flex items-center gap-1.5 mb-1.5">
+                <Calendar className="h-4 w-4 text-primary" />
+                Delivery Timeframe
+              </Label>
               <Select value={deliveryTimeframe} onValueChange={setDeliveryTimeframe}>
-                <SelectTrigger id="timeframe">
+                <SelectTrigger id="timeframe" className="ai-input">
                   <SelectValue placeholder="Select timeframe" />
                 </SelectTrigger>
                 <SelectContent>
@@ -130,35 +147,52 @@ export default function QuickCompare() {
           
           <Button 
             type="button" 
-            className="w-full"
+            className="w-full gradient-button h-11 mt-2"
             onClick={handleCompare}
           >
             Compare Prices
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </form>
         
         {/* Recent Searches */}
         <div>
-          <h3 className="text-sm font-medium text-gray-700 mb-2">Recent Searches</h3>
+          <h3 className="flex items-center gap-1.5 font-medium text-primary mb-3">
+            <Clock className="h-4 w-4" />
+            Recent Searches
+          </h3>
           
-          {recentSearches.map((search) => (
-            <div 
-              key={search.id}
-              className="border border-gray-200 rounded-md p-3 mb-2 hover:bg-gray-50 cursor-pointer"
-              onClick={() => handleRecentSearchClick(search.id)}
-            >
-              <div className="flex justify-between">
-                <div>
-                  <h4 className="font-medium text-sm">{search.commodity} - {search.quantity}</h4>
-                  <p className="text-sm text-gray-500">Delivery to {search.location} within {search.timeframe}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-primary-600">{search.optionsFound} options found</p>
-                  <p className="text-xs text-gray-500">{search.timeAgo}</p>
+          <div className="space-y-3">
+            {recentSearches.map((search) => (
+              <div 
+                key={search.id}
+                className="glass-card rounded-lg p-4 hover:shadow-md cursor-pointer transition-all duration-200 hover-lift"
+                onClick={() => handleRecentSearchClick(search.id)}
+              >
+                <div className="flex justify-between">
+                  <div>
+                    <h4 className="font-medium">{search.commodity} - {search.quantity}</h4>
+                    <p className="text-sm text-muted-foreground flex items-center gap-1.5 mt-1">
+                      <MapPin className="h-3 w-3" />
+                      {search.location}
+                      <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground/50 mx-1"></span>
+                      <Calendar className="h-3 w-3" />
+                      {search.timeframe}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium text-primary flex items-center justify-end">
+                      {search.optionsFound} options
+                    </p>
+                    <p className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-1">
+                      <Clock className="h-3 w-3" />
+                      {search.timeAgo}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </CardContent>
     </Card>

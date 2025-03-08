@@ -31,54 +31,69 @@ export default function HomePage() {
         <main className="flex-1 overflow-auto">
           <div className="container mx-auto p-4 md:p-6">
             {/* Dashboard Header */}
-            <div className="mb-6">
-              <h1 className="text-2xl font-heading font-semibold text-gray-800 mb-1">Dashboard</h1>
-              <p className="text-gray-500">Compare commodity prices and shipping costs in real-time</p>
+            <div className="mb-8 relative">
+              <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary-light/5 blur-3xl"></div>
+              <h1 className="gradient-heading text-3xl font-bold mb-2 relative z-10">Dashboard</h1>
+              <p className="text-muted-foreground relative z-10">Compare commodity prices and shipping costs in real-time</p>
+              <div className="absolute -z-10 top-1/2 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary/10 to-transparent"></div>
             </div>
             
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <StatCard
-                title="Total Savings"
-                value="£24,350"
-                subtext="this month"
-                changePercent={12.5}
-                changeDirection="up"
-              />
-              <StatCard
-                title="Comparisons Made"
-                value="138"
-                subtext="this month"
-                changePercent={5.3}
-                changeDirection="up"
-              />
-              <StatCard
-                title="Completed Orders"
-                value="42"
-                subtext="this month"
-                changePercent={2.1}
-                changeDirection="up"
-              />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="hover-lift">
+                <StatCard
+                  title="Total Savings"
+                  value="£24,350"
+                  subtext="this month"
+                  changePercent={12.5}
+                  changeDirection="up"
+                />
+              </div>
+              <div className="hover-lift">
+                <StatCard
+                  title="Comparisons Made"
+                  value="138"
+                  subtext="this month"
+                  changePercent={5.3}
+                  changeDirection="up"
+                />
+              </div>
+              <div className="hover-lift">
+                <StatCard
+                  title="Completed Orders"
+                  value="42"
+                  subtext="this month"
+                  changePercent={2.1}
+                  changeDirection="up"
+                />
+              </div>
             </div>
             
             {/* Price Trend Chart */}
-            <PriceTrendChart />
+            <div className="mb-8 glass-card rounded-xl p-1">
+              <PriceTrendChart />
+            </div>
             
             {/* Quick Compare & Subscription Info */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-              <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+              <div className="lg:col-span-2 hover-lift">
                 <QuickCompare />
               </div>
-              <div>
+              <div className="hover-lift">
                 <SubscriptionInfo />
               </div>
             </div>
             
             {/* Recent Results */}
-            <RecentResults />
+            <div className="mb-8 hover-lift">
+              <RecentResults />
+            </div>
             
             {/* Supplier Insights */}
-            <SupplierInsights />
+            <div className="hover-lift">
+              <SupplierInsights />
+            </div>
           </div>
         </main>
       </div>

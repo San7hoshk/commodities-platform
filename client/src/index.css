@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-rgb: 99, 102, 241;
+  --primary-light: 235 78% 67%;
+  --primary-dark: 256 84% 45%;
+}
+
 @layer base {
   * {
     @apply border-border;
