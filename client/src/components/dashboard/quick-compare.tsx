@@ -50,11 +50,10 @@ export default function QuickCompare() {
   };
 
   return (
-    <Card className="glass-card overflow-hidden border-0">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-lg"></div>
-      <CardHeader className="relative border-b border-muted/20">
-        <CardTitle className="flex items-center gap-2 text-xl">
-          <Search className="h-5 w-5 text-primary" />
+    <Card className="glass-card overflow-hidden">
+      <CardHeader className="relative border-b border-zinc-100">
+        <CardTitle className="flex items-center gap-2 text-xl text-zinc-900">
+          <Search className="h-5 w-5 text-zinc-800" />
           <span className="gradient-heading">Quick Commodity Comparison</span>
         </CardTitle>
       </CardHeader>
@@ -63,12 +62,12 @@ export default function QuickCompare() {
         <form className="mb-6 space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <Label htmlFor="commodity" className="flex items-center gap-1.5 mb-1.5">
-                <Box className="h-4 w-4 text-primary" />
+              <Label htmlFor="commodity" className="flex items-center gap-1.5 mb-1.5 text-zinc-700">
+                <Box className="h-4 w-4 text-zinc-600" />
                 Commodity Type
               </Label>
               <Select value={commodityType} onValueChange={setCommodityType}>
-                <SelectTrigger id="commodity" className="ai-input">
+                <SelectTrigger id="commodity" className="ai-input text-zinc-800">
                   <SelectValue placeholder="Select a commodity" />
                 </SelectTrigger>
                 <SelectContent>
@@ -82,8 +81,8 @@ export default function QuickCompare() {
             </div>
             
             <div>
-              <Label htmlFor="quantity" className="flex items-center gap-1.5 mb-1.5">
-                <Box className="h-4 w-4 text-primary" />
+              <Label htmlFor="quantity" className="flex items-center gap-1.5 mb-1.5 text-zinc-700">
+                <Box className="h-4 w-4 text-zinc-600" />
                 Quantity
               </Label>
               <div className="flex">
@@ -92,10 +91,10 @@ export default function QuickCompare() {
                   type="number" 
                   value={quantity} 
                   onChange={(e) => setQuantity(e.target.value)}
-                  className="rounded-r-none ai-input"
+                  className="rounded-r-none ai-input text-zinc-800"
                 />
                 <Select value={unit} onValueChange={setUnit}>
-                  <SelectTrigger className="w-[80px] rounded-l-none border-l bg-slate-50">
+                  <SelectTrigger className="w-[80px] rounded-l-none border-l bg-white border-zinc-200 text-zinc-800">
                     <SelectValue placeholder="Unit" />
                   </SelectTrigger>
                   <SelectContent>
@@ -109,12 +108,12 @@ export default function QuickCompare() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <Label htmlFor="location" className="flex items-center gap-1.5 mb-1.5">
-                <MapPin className="h-4 w-4 text-primary" />
+              <Label htmlFor="location" className="flex items-center gap-1.5 mb-1.5 text-zinc-700">
+                <MapPin className="h-4 w-4 text-zinc-600" />
                 Delivery Location
               </Label>
               <Select value={deliveryLocation} onValueChange={setDeliveryLocation}>
-                <SelectTrigger id="location" className="ai-input">
+                <SelectTrigger id="location" className="ai-input text-zinc-800">
                   <SelectValue placeholder="Select location" />
                 </SelectTrigger>
                 <SelectContent>
@@ -127,12 +126,12 @@ export default function QuickCompare() {
             </div>
             
             <div>
-              <Label htmlFor="timeframe" className="flex items-center gap-1.5 mb-1.5">
-                <Calendar className="h-4 w-4 text-primary" />
+              <Label htmlFor="timeframe" className="flex items-center gap-1.5 mb-1.5 text-zinc-700">
+                <Calendar className="h-4 w-4 text-zinc-600" />
                 Delivery Timeframe
               </Label>
               <Select value={deliveryTimeframe} onValueChange={setDeliveryTimeframe}>
-                <SelectTrigger id="timeframe" className="ai-input">
+                <SelectTrigger id="timeframe" className="ai-input text-zinc-800">
                   <SelectValue placeholder="Select timeframe" />
                 </SelectTrigger>
                 <SelectContent>
@@ -155,10 +154,12 @@ export default function QuickCompare() {
           </Button>
         </form>
         
+        <div className="black-separator"></div>
+        
         {/* Recent Searches */}
         <div>
-          <h3 className="flex items-center gap-1.5 font-medium text-primary mb-3">
-            <Clock className="h-4 w-4" />
+          <h3 className="flex items-center gap-1.5 font-medium text-zinc-800 mb-3">
+            <Clock className="h-4 w-4 text-zinc-600" />
             Recent Searches
           </h3>
           
@@ -166,25 +167,25 @@ export default function QuickCompare() {
             {recentSearches.map((search) => (
               <div 
                 key={search.id}
-                className="glass-card rounded-lg p-4 hover:shadow-md cursor-pointer transition-all duration-200 hover-lift"
+                className="monochrome-section p-4 hover:shadow-md cursor-pointer transition-all duration-200 hover-lift"
                 onClick={() => handleRecentSearchClick(search.id)}
               >
                 <div className="flex justify-between">
                   <div>
-                    <h4 className="font-medium">{search.commodity} - {search.quantity}</h4>
-                    <p className="text-sm text-muted-foreground flex items-center gap-1.5 mt-1">
+                    <h4 className="font-medium text-zinc-800">{search.commodity} - {search.quantity}</h4>
+                    <p className="text-sm text-zinc-500 flex items-center gap-1.5 mt-1">
                       <MapPin className="h-3 w-3" />
                       {search.location}
-                      <span className="inline-block w-1 h-1 rounded-full bg-muted-foreground/50 mx-1"></span>
+                      <span className="inline-block w-1 h-1 rounded-full bg-zinc-300 mx-1"></span>
                       <Calendar className="h-3 w-3" />
                       {search.timeframe}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-primary flex items-center justify-end">
+                    <p className="text-sm font-medium text-zinc-900 flex items-center justify-end">
                       {search.optionsFound} options
                     </p>
-                    <p className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-1">
+                    <p className="text-xs text-zinc-500 flex items-center justify-end gap-1 mt-1">
                       <Clock className="h-3 w-3" />
                       {search.timeAgo}
                     </p>
